@@ -1,15 +1,20 @@
-import styles from './styles';
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import styles from '../styles';
+import React from 'react';
+import { View } from 'react-native';
+import { Button, Text } from 'react-native-elements';
 
-class LodingScreen extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>This is the LodingScreen.</Text>
-      </View>
-    );
-  }
+function LodingScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Text>This is the LodingScreen.</Text>
+      <Button
+        title="Go to Home"
+        type="solid"
+        buttonStyle={styles.button}
+        onPress={() => navigation.navigate('MainTabs')}
+      />
+    </View>
+  );
 }
 
 export default LodingScreen;

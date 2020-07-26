@@ -1,4 +1,4 @@
-import styles from './styles';
+import styles from '../styles';
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 

@@ -1,15 +1,21 @@
-import styles from './styles';
+import styles from '../styles';
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import { Button, Text } from 'react-native-elements';
 
-class DetailScreen extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>This is the DetailScreen.</Text>
-      </View>
-    );
-  }
+
+function DetailScreen({ navigation }) {
+  return (
+    <View style={styles.container}>
+      <Text>This is the DetailScreen.</Text>
+      <Button
+        title="Go Back"
+        type="solid"
+        buttonStyle={styles.button}
+        onPress={() => navigation.goBack()}
+      />
+    </View>
+  );
 }
 
 export default DetailScreen;
