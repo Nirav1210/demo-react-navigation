@@ -6,6 +6,8 @@ import { Button, Text } from 'react-native-elements';
 function SettingsScreen({ navigation }) {
   React.useLayoutEffect(() => {
     navigation.setOptions({
+      title: "Settings",
+      headerStyle: styles.header,
       headerLeft: () => (
         Platform.select({
           ios: (<Button onPress={() => {}} title="Logout" type="clear" />),

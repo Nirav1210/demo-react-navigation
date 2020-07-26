@@ -5,6 +5,13 @@ import { Button, Text } from 'react-native-elements';
 
 
 function DetailScreen({ navigation }) {
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: "Details",
+      headerStyle: styles.header,
+    });
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <Text>This is the DetailScreen.</Text>

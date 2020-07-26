@@ -10,6 +10,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Button, Text, Icon } from 'react-native-elements';
 
 
 const Stack = createStackNavigator();
@@ -17,30 +18,9 @@ const Stack = createStackNavigator();
 function HomeStack() {
   return(
     <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen 
-            name="Home" 
-            component={HomeScreen}
-            options={{
-                title: "Home",
-                headerStyle: styles.header,
-            }}
-        />
-        <Stack.Screen 
-            name="Detail" 
-            component={DetailScreen}
-            options={{
-                title: "Detail",
-                headerStyle: styles.header,
-            }}
-        />
-        <Stack.Screen 
-            name="Options" 
-            component={OptionsScreen}
-            options={{
-                title: "Options",
-                headerStyle: styles.header,
-            }} 
-        />
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Detail" component={DetailScreen} />
+        <Stack.Screen name="Options" component={OptionsScreen} />
     </Stack.Navigator>
   );
 }
@@ -51,14 +31,7 @@ const Drawer = createDrawerNavigator();
 function SettingsStack() {
     return(
         <Stack.Navigator>
-            <Stack.Screen 
-                name="Settings" 
-                component={SettingsScreen}
-                options={{
-                    title: "Settings",
-                    headerStyle: styles.header,
-                }}
-            />
+            <Stack.Screen name="Settings" component={SettingsScreen} />
         </Stack.Navigator>
       );
 }
@@ -69,16 +42,15 @@ const MainTabs =
       <Tab.Navigator
         screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+                let iconName;
 
-            if (route.name === 'HomeStack') {
-                iconName = 'ios-home';
-            } else if (route.name === 'SettingsStack') {
-                iconName = 'ios-settings';
-            }
+                if (route.name === 'HomeStack') {
+                    iconName = 'ios-home';
+                } else if (route.name === 'SettingsStack') {
+                    iconName = 'ios-settings';
+                }
 
-            // You can return any component that you like here!
-            return <Ionicons name={iconName} size={size} color={color} />;
+                return <Ionicons name={iconName} size={size} color={color} />;
             },
         })}
         tabBarOptions={{
@@ -91,7 +63,32 @@ const MainTabs =
       </Tab.Navigator>
     ),
     android: () => (
-      <Drawer.Navigator>
+      <Drawer.Navigator
+        screenOptions={({ route }) => ({
+            drawerIcon: ({ color, size }) => {
+                let iconName;
+
+                if (route.name === 'HomeStack') {
+                    iconName = 'md-home';
+                } else if (route.name === 'SettingsStack') {
+                    iconName = 'md-cog';
+                }
+
+                return <Ionicons name={iconName} size={size} color={color} />;
+            },
+            drawerLabel: () => {
+                let label;
+
+                if (route.name === 'HomeStack') {
+                    label = 'Home';
+                } else if (route.name === 'SettingsStack') {
+                    label = 'Settings';
+                }
+
+                return <Text>{label}</Text>;
+            }
+        })}
+      >
         <Drawer.Screen name="HomeStack" component={HomeStack} />
         <Drawer.Screen name="SettingsStack" component={SettingsStack} />
       </Drawer.Navigator>
@@ -101,14 +98,7 @@ const MainTabs =
 function RootSwitch() {
   return (
     <Stack.Navigator>
-      <Stack.Screen 
-        name="Loading" 
-        component={LoadingScreen} 
-        options={{
-            title: "Loading",
-            headerStyle: styles.header,
-        }}
-    />
+      <Stack.Screen name="Loading" component={LoadingScreen} />
       <Stack.Screen name="MainTabs" component={MainTabs} options={{ headerShown: false }}/>
     </Stack.Navigator>
   );

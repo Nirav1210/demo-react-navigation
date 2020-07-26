@@ -4,6 +4,13 @@ import { View } from 'react-native';
 import { Button, Text } from 'react-native-elements';
 
 function LodingScreen({ navigation }) {
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: "Loading",
+      headerStyle: styles.header,
+    });
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
       <Text>This is the LodingScreen.</Text>
