@@ -3,15 +3,14 @@ import HomeScreen from '../screens/Home';
 import LoadingScreen from '../screens/Loading';
 import OptionsScreen from '../screens/Options';
 import SettingsScreen from '../screens/Settings';
-import styles from '../screens/styles';
 import { Platform } from "react-native";
 import React from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Button, Text, Icon } from 'react-native-elements';
-
+import { Text } from 'react-native-elements';
+import BurgerMenu from '../components/BurgerMenu'
 
 const Stack = createStackNavigator();
 
@@ -52,6 +51,17 @@ const MainTabs =
 
                 return <Ionicons name={iconName} size={size} color={color} />;
             },
+            tabBarLabel: () => {
+              let label;
+
+              if (route.name === 'HomeStack') {
+                  label = 'Home';
+              } else if (route.name === 'SettingsStack') {
+                  label = 'Settings';
+              }
+
+              return <Text>{label}</Text>;
+          }
         })}
         tabBarOptions={{
             activeTintColor: 'tomato',
@@ -88,6 +98,7 @@ const MainTabs =
                 return <Text>{label}</Text>;
             }
         })}
+        drawerContent={(props) => <BurgerMenu {...props} />}
       >
         <Drawer.Screen name="HomeStack" component={HomeStack} />
         <Drawer.Screen name="SettingsStack" component={SettingsStack} />

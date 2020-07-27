@@ -10,7 +10,7 @@ function SettingsScreen({ navigation }) {
       headerStyle: styles.header,
       headerLeft: () => (
         Platform.select({
-          ios: (<Button onPress={() => {}} title="Logout" type="clear" />),
+          ios: (<Button onPress={() => {}} title="Log Out" type="clear" />),
           android: null
         })
       )
